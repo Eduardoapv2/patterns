@@ -1,4 +1,4 @@
-/**
+ /**
  * You can assume that `n` is an integer.
  * @param {number} n
  * @returns {number} the sum of all integers from 1 to n, inclusive
@@ -6,6 +6,8 @@
  */
 export function sumToN(n) {
   if (typeof n !== "number") return NaN;
+  if(n <= 0 ) return 0 ;
+  return(n * (n + 1)) / 2 ; 
 
   let sum = 0;
   for (let i = 1; i <= n; i++) {
@@ -23,6 +25,13 @@ export function sumToN(n) {
  */
 export function factorial(n) {
   // TODO
+  if (typeof n !== "number") return NaN;
+  if (n < 0) return undefined;
+  let result = 1 ; 
+  for (let i = 2; i <= n; i++){
+    result *=i;
+  }
+  return result;
 }
 
 /**
@@ -33,6 +42,9 @@ export function factorial(n) {
  */
 export function buildNArray(n) {
   // TODO
+  if (typeof n !== "number") return null;
+  if ( n <= 0 )return [];
+  return Array.from({length: n}, (_, i) => i + 1);
 }
 
 /**
@@ -41,6 +53,14 @@ export function buildNArray(n) {
  */
 export function getLongestString(strings) {
   // TODO
+  if (!Array.isArray(strings)|| strings.length=== 0) return"";
+  let longest = strings[0];
+  for(let str of strings){
+    if (str.length > longest.length){
+      longest=str;
+    }
+  }
+  return longest;
 }
 
 /**
@@ -49,6 +69,8 @@ export function getLongestString(strings) {
  */
 export function countPresent(attendance) {
   // TODO
+  if (!Array.isArray(attendance)|| attendance.length === 0 )return 0;
+  return attendance.reduce((count, item) => count + (item === true? 1 : 0), 0);
 }
 
 /**
@@ -63,4 +85,10 @@ export function countPresent(attendance) {
  */
 export function complementDNA(dna) {
   // TODO
+  if ( typeof dna !== "string") return null;
+  if(dna ==="")return "";
+  const map = {A: "T", T: "A", C: "G", G: "C"};
+  let result= "";
+  return dna .split("") .map((base)=> map[base] || "") .join("");
+  return result;
 }

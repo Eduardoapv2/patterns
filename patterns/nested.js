@@ -9,6 +9,8 @@
 export function makeBoard(rows, cols) {
   if (typeof rows !== "number" || typeof cols !== "number") return null;
   if (rows <= 0 || cols <= 0) return [];
+  return Array.from({length : rows}, ()=>
+  Array.from ({length: cols},()=> "-"));
 
   const board = [];
   for (let i = 0; i < rows; i++) {
@@ -37,6 +39,11 @@ export function makeBoard(rows, cols) {
  */
 export function makeTriangle(size) {
   // TODO
+  if (typeof size !== "number") return null;
+  if (size <= 0)return [];
+  const triangle=[];
+  for (let i=1;i<=size;i++){triangle.push(Array.from({length:i}, ()=> "-"));}
+return triangle;
 }
 
 /**
@@ -47,4 +54,16 @@ export function makeTriangle(size) {
  */
 export function countLetter(words, letter) {
   // TODO
+  if (typeof letter !== "string") return 0;
+  if (!Array.isArray(words)|| words.length === 0) return 0;
+
+  let count= 0;
+  for (const word of words){
+    for (const char of word){
+      if (char === letter) {
+        count++; 
+      }
+    }
+  }
+  return count;
 }
